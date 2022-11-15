@@ -9,7 +9,14 @@ namespace Strategy.Model
 {
     public class ISS : ITax
     {
-        public double CalculaImposto(Budget budget)
+        public ISS(ITax adicionalTax) : base(adicionalTax)
+        {
+        }
+        public ISS()
+        {
+        }
+
+        public override double CalculaImposto(Budget budget)
         {
             var total = (from tot in budget.Products
                          select tot).Sum(e => e.Price);

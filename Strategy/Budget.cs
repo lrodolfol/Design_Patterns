@@ -43,11 +43,16 @@ namespace Strategy
             //ao inves de ficar vendo imposto por imposto fazendo varios if para cada calculo,
             //já tenho uma interface com um metodo que é implementada em cada classe a seguir
             //cada classe tem sua regra de negócio especifica
+
+            //aproveitando o classico exemplo para mostrar o uso do padrão DECORATOR
+            //onde um objeto pode se composto ou decorado por outro objeto para que seja possivel uma atividade extra
+            //aqui um imposto pode ser calculado junto com outro imposto. chamei ele de ADITIONAL
             double total = (
-                new COFINS().CalculaImposto(this) +
-                new ICMS().CalculaImposto(this) +
-                new IPI().CalculaImposto(this) +
-                new ISS().CalculaImposto(this)
+                new COFINS().calculaImpostosDecorator(this) +
+                new ICMS().calculaImpostosDecorator(this) +
+                new IPI().calculaImpostosDecorator(this) +
+                new ISS().calculaImpostosDecorator(this) + 
+                new IPI(new ISS()).calculaImpostosDecorator(this) 
                 );
 
             totalTax = total;

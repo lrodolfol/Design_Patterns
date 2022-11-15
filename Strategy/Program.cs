@@ -67,11 +67,11 @@ do
             obsv.Run(budget);
         }
 
-        Console.WriteLine("Pago");
+        Console.WriteLine("Pai Out!");
     }
     else
     {
-        Console.WriteLine("Payment not complete. Check if the method paymente is valid");
+        Console.WriteLine("Payment not complete. Check if the payment method is valid");
     }
 
     op += 1;
