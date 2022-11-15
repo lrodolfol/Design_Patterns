@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Strategy.Model
 {
-    public class ISS : ITax
+    public class ISS : Tax
     {
-        public ISS(ITax adicionalTax) : base(adicionalTax)
+        public ISS(Tax adicionalTax) : base(adicionalTax)
         {
         }
         public ISS()

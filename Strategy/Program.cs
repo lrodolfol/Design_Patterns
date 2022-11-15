@@ -32,6 +32,11 @@ PaymentFactoryMethod[] formPayent = {
         new PaymentPix()
     };
 
+//listas dos obervers. a ser usado no padrão Observer
+IList<IObserver> listObservers = new List<IObserver>();
+listObservers.Add(new SendEmail());
+listObservers.Add(new SendXml());
+
 do
 {
     Console.WriteLine("\n\n");
@@ -58,10 +63,6 @@ do
     //aqui entra o padrão Observer
     if(paidOut)
     {
-        IList<IObserver> listObservers = new List<IObserver>();
-        listObservers.Add(new SendEmail());
-        listObservers.Add(new SendXml());
-
         foreach (var obsv in listObservers)
         {
             obsv.Run(budget);

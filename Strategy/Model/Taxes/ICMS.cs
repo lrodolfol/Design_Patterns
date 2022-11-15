@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Strategy.Model
 {
-    internal class ICMS : ITax
+    internal class ICMS : Tax
     {
-        public ICMS(ITax adicionalTax) : base(adicionalTax)
+        public ICMS(Tax adicionalTax) : base(adicionalTax)
         {
         }
         public ICMS()

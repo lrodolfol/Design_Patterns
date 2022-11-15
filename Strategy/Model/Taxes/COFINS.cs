@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Strategy.Model
 {
-    internal class COFINS : ITax
+    internal class COFINS : Tax
     {
-        public COFINS(ITax adicionalTax) : base(adicionalTax)
+        public COFINS(Tax adicionalTax) : base(adicionalTax)
         {
         }
         public COFINS() : base()

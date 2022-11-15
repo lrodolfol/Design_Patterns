@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Strategy.Model
 {
-    internal class IPI : ITax
+    internal class IPI : Tax
     {
-        public IPI(ITax adicionalTax) : base(adicionalTax)
+        public IPI(Tax adicionalTax) : base(adicionalTax)
         {
         }
         public IPI()
