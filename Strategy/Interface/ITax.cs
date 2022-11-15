@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Strategy.Interface
 {
-    public interface Tax
+    public interface ITax
     {
         double CalculaImposto(Budget orcamento);
     }

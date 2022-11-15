@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Strategy.Model
 {
-    internal class ICMS : Tax
+    internal class ICMS : ITax
     {
         public double CalculaImposto(Budget budget)
         {

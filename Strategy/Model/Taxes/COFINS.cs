@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Strategy.Model
 {
-    internal class COFINS : Tax
+    internal class COFINS : ITax
     {
         public double CalculaImposto(Budget budget)
         {

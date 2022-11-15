@@ -1,4 +1,5 @@
 ﻿using Strategy.Model;
+using Strategy.Model.Payment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Strategy
 
         public int CodOrcamento { get; set; }
         public IList<Products> Products;
+        public double totalTax { get; set; }
 
         public Budget()
         {
@@ -29,12 +31,17 @@ namespace Strategy
             {
                 stringBudget.Append($"{product.Name} costing R$ {product.Price}\n");
             }
-            
+
+            stringBudget.Append($"\nThe total Tax is: R$ {this.totalTax}");
+
             return stringBudget.ToString();
         }
 
-        public double CalcBudget()
+        public void CalcBudget()
         {
+            //ao inves de ficar vendo imposto por imposto fazendo varios if para cada calculo,
+            //já tenho uma interface com um metodo que é implementada em cada classe a seguir
+            //cada classe tem sua regra de negócio especifica
             double total = (
                 new COFINS().CalculaImposto(this) +
                 new ICMS().CalculaImposto(this) +
@@ -42,7 +49,12 @@ namespace Strategy
                 new ISS().CalculaImposto(this)
                 );
 
-            return total;
+            totalTax = total;
+        }
+
+        public void Pay(PaymentFactoryMethod formOfPayment)
+        {
+            formOfPayment.CreatePayment();
         }
     }
 }

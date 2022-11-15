@@ -1,10 +1,12 @@
 ﻿using Strategy;
 using Strategy.Model;
+using Strategy.Model.Payment;
 
 Console.WriteLine("PADRÃO STRATEGY");
 Console.WriteLine("===============\n\n");
 Random random = new Random();
 
+//cria varios produtos para calcular o imposto
 Products[] pdArry = { 
     new Products{ Name="NoteBook Dell", Price = 2299.91 },
     new Products{ Name="NoteBook Lenovo", Price = 2564.05 },
@@ -19,6 +21,7 @@ Products[] pdArry = {
     new Products{ Name="Desktop Dell 2TB ", Price = 2200.00 },
     };
 
+//cria o orçamento com 2 produtos escolhidos de forma aleatoria
 Budget budget = new Budget
 {
     Products = new List<Products> {
@@ -26,8 +29,12 @@ Budget budget = new Budget
             pdArry[random.Next(pdArry.Length)]
     }
 };
+
+//dentro desse metodo que é feito o padrão Strategy
+budget.CalcBudget();
+
+//override do ToString() só para mostrar os produtos do orçamento
 Console.WriteLine(budget.ToString());
 
-double totalBudget = budget.CalcBudget();
-
-Console.WriteLine("The budget total is: {0:C}", totalBudget);
+budget.Pay(new PaymentCreditCard());
+budget.Pay(new PaymentMoney());
