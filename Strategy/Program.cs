@@ -1,6 +1,7 @@
 ﻿using Strategy;
 using Strategy.Interface;
 using Strategy.Model;
+using Strategy.Model.ObserversPayment;
 using Strategy.Model.Payment;
 
 Console.WriteLine("====================");
@@ -57,11 +58,20 @@ do
     //aqui entra o padrão Observer
     if(paidOut)
     {
+        IList<IObserver> listObservers = new List<IObserver>();
+        listObservers.Add(new SendEmail());
+        listObservers.Add(new SendXml());
+
+        foreach (var obsv in listObservers)
+        {
+            obsv.Run(budget);
+        }
+
         Console.WriteLine("Pago");
     }
     else
     {
-        Console.WriteLine("Não pago");
+        Console.WriteLine("Payment not complete. Check if the method paymente is valid");
     }
 
     op += 1;
