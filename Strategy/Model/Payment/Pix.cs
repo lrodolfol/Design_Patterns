@@ -5,15 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Strategy.Model.Payment.Payment
+namespace Strategy.Model.Payment
 {
-    public class CreditCard : IFormPayment
+    public class Pix : IFormPayment
     {
         public bool Pay()
         {
-            Console.WriteLine("\nPayment with Credit Card\n");
-            return true;
+            Console.WriteLine("\nPayment with Pix\n");
+            return false;
         }
-        
     }
 }

@@ -1,4 +1,5 @@
-﻿using Strategy.Model;
+﻿using Strategy.Interface;
+using Strategy.Model;
 using Strategy.Model.Payment;
 using System;
 using System.Collections.Generic;
@@ -52,9 +53,15 @@ namespace Strategy
             totalTax = total;
         }
 
-        public void Pay(PaymentFactoryMethod formOfPayment)
+        public bool Pay(PaymentFactoryMethod formOfPayment)
         {
-            formOfPayment.CreatePayment();
+            //não há necessidade de saber qual a exata forma de pagamento
+            //essa tarefa será feito pela factory de cada classe concreta. (PaymentFactoryMoney, Creditcard e pix)
+            //e o objeto(produto) será retornado corretamente de acordo com o tipo escolhido
+            IFormPayment formOfpayment = formOfPayment.CreatePayment();
+            var paidOut = formOfpayment.Pay();
+
+            return paidOut;
         }
     }
 }

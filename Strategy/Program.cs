@@ -1,13 +1,16 @@
 ﻿using Strategy;
+using Strategy.Interface;
 using Strategy.Model;
 using Strategy.Model.Payment;
 
-Console.WriteLine("PADRÃO STRATEGY");
-Console.WriteLine("===============\n\n");
+Console.WriteLine("====================");
+Console.WriteLine("===DESIGN PATTERS===");
+Console.WriteLine("====================");
 Random random = new Random();
+int op = 0;
 
 //cria varios produtos para calcular o imposto
-Products[] pdArry = { 
+Products[] pdArry = {
     new Products{ Name="NoteBook Dell", Price = 2299.91 },
     new Products{ Name="NoteBook Lenovo", Price = 2564.05 },
     new Products{ Name="Macbook Air", Price = 6698.55 },
@@ -21,20 +24,47 @@ Products[] pdArry = {
     new Products{ Name="Desktop Dell 2TB ", Price = 2200.00 },
     };
 
-//cria o orçamento com 2 produtos escolhidos de forma aleatoria
-Budget budget = new Budget
+//todas as formas de pagamentos possiveis
+PaymentFactoryMethod[] formPayent = {
+        new PaymentMoney(),
+        new PaymentCreditCard(),
+        new PaymentPix()
+    };
+
+do
 {
-    Products = new List<Products> {
+    Console.WriteLine("\n\n");
+    //cria o orçamento com 2 produtos escolhidos de forma aleatoria
+    Budget budget = new Budget
+    {
+        Products = new List<Products> {
             pdArry[random.Next(pdArry.Length)],
             pdArry[random.Next(pdArry.Length)]
+        }
+    };
+
+    //dentro desse metodo que é feito o padrão Strategy
+    budget.CalcBudget();
+
+    //override do ToString() só para mostrar os produtos do orçamento
+    Console.WriteLine(budget.ToString());
+
+    //modo de pagamento aleatorio
+    //aqui entra o padrão Factory Method
+    var paidOut = budget.Pay(formPayent[random.Next(formPayent.Length)]);
+
+    //se foi pago. faz varias outras tarefas
+    //aqui entra o padrão Observer
+    if(paidOut)
+    {
+        Console.WriteLine("Pago");
     }
-};
+    else
+    {
+        Console.WriteLine("Não pago");
+    }
 
-//dentro desse metodo que é feito o padrão Strategy
-budget.CalcBudget();
+    op += 1;
+    Console.ReadKey();
 
-//override do ToString() só para mostrar os produtos do orçamento
-Console.WriteLine(budget.ToString());
-
-budget.Pay(new PaymentCreditCard());
-budget.Pay(new PaymentMoney());
+} while (op <= 3);

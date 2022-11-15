@@ -4,6 +4,6 @@ namespace Strategy.Interface
 {
     public interface IFormPayment
     {
-        string Pay();
+        bool Pay();
     }
 }

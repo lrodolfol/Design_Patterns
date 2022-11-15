@@ -9,9 +9,10 @@ namespace Strategy.Model.Payment.Payment
 {
     public class Money : IFormPayment
     {
-        public string Pay()
+        public bool Pay()
         {
-            return "Money";
+            Console.WriteLine("\nPayment with Money\n");
+            return true;
         }
     }
 }

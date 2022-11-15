@@ -5,10 +5,11 @@ namespace Strategy.Model.Payment
     public abstract class PaymentFactoryMethod
     {
         public abstract IFormPayment FormPayment();
-        public void CreatePayment()
+        public IFormPayment CreatePayment()
         {
-            var payment = FormPayment();
-            Console.WriteLine($"Paying with: {payment.Pay()}");
+            var payment = FormPayment;
+            //Console.WriteLine($"\nPaying with: {payment.Pay()}");
+            return payment();
         }
     }
 }
